@@ -6,15 +6,14 @@ import {
 } from '@metaplex-foundation/rustbin';
 import { logInfo } from './logs';
 
-export type RustBinaryResult = RustbinMatchReturn & { binaryVersion: string };
+export type RustBinaryResult = Omit<RustbinMatchReturn, 'binVersion'> & {
+  binVersion: string;
+};
 
 export async function checkAndInstallRustBinary(
   rustbinConfig: RustbinConfig,
 ): Promise<RustBinaryResult> {
-  const match: RustbinMatchReturn = await rustbinMatch(
-    rustbinConfig,
-    confirmAutoMessageLog,
-  );
+  const match = await rustbinMatch(rustbinConfig, confirmAutoMessageLog);
 
   if (!match.binVersion) {
     const binary = rustbinConfig.binaryName;

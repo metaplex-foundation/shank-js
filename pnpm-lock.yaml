@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lorisleiva/kinobi': ^0.0.2
+  '@lorisleiva/kinobi': ^0.0.3
   '@metaplex-foundation/rustbin': ^0.3.1
   '@types/debug': ^4.1.7
   '@types/node': ^18.11.17
@@ -25,7 +25,7 @@ dependencies:
   debug: 4.3.4
 
 devDependencies:
-  '@lorisleiva/kinobi': 0.0.2
+  '@lorisleiva/kinobi': 0.0.3
   '@types/debug': 4.1.7
   '@types/node': 18.11.17
   '@types/prettier': 2.7.1
@@ -79,8 +79,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@lorisleiva/kinobi/0.0.2:
-    resolution: {integrity: sha512-BqR/4kM+/7pCQ4HCxqE5qqVRVaiHp54ye9ppBAeFdEiIbuxtOyJ4mDzEHT05dXJ1bLostpiJCi6RLIbGplxZeg==}
+  /@lorisleiva/kinobi/0.0.3:
+    resolution: {integrity: sha512-bD9TWyhy+x64QNmwCKaWhU1IGbmXbJDBpM7ceZ1JuanVpCe5F/faaifhV1c52oLDhN9q1/vDR05ljleqJfGUiQ==}
     dependencies:
       nunjucks: 3.2.3
       prettier: 2.8.1

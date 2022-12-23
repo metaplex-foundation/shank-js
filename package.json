@@ -16,7 +16,7 @@
   "author": "",
   "license": "MIT",
   "devDependencies": {
-    "@lorisleiva/kinobi": "^0.0.2",
+    "@lorisleiva/kinobi": "^0.0.3",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.17",
     "@types/prettier": "^2.7.1",

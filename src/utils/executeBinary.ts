@@ -15,8 +15,10 @@ export function executeBinary(
         logError(`Failed to execute: ${tool} ${args}`);
         reject(err);
       })
-      .on('exit', async (exitCode) => {
-        resolve(exitCode ?? 0);
+      .on('exit', async (code) => {
+        const exitCode = code ?? 0;
+        if (exitCode !== 0) logError(`Failed to execute: ${tool} ${args}`);
+        resolve(exitCode);
       });
 
     childProcess.stdout.on('data', (buf) => process.stdout.write(buf));

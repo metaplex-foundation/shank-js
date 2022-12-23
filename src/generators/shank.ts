@@ -1,14 +1,14 @@
 import type { Idl } from '@lorisleiva/kinobi';
-import type { SpawnOptionsWithoutStdio } from 'child_process';
 import path from 'path';
+import { checkAndInstallRustBinary, executeBinary, readIdl } from '../utils';
 import { RustbinConfig, ShankGeneratorOptions } from '../types';
 
-export default function generate(config: ShankGeneratorOptions): Idl {
+export default async function generate(
+  config: ShankGeneratorOptions,
+): Promise<Idl> {
   const { idlDir, binaryInstallDir, programDir } = config;
-  const spawnArgs = ['idl', '--out-dir', idlDir, '--crate-root', programDir];
-  const spawnOpts: SpawnOptionsWithoutStdio = {
-    cwd: programDir,
-  };
+  const binaryArgs = ['idl', '--out-dir', idlDir, '--crate-root', programDir];
+  const binaryOptions = { cwd: programDir };
   const rustbinConfig: RustbinConfig = {
     rootDir: binaryInstallDir,
     binaryName: 'shank',
@@ -19,5 +19,25 @@ export default function generate(config: ShankGeneratorOptions): Idl {
     ...config.rustbin,
   };
 
-  return handle(config, rustbinConfig, spawnArgs, spawnOpts);
+  const { fullPathToBinary, binVersion, libVersion } =
+    await checkAndInstallRustBinary(rustbinConfig);
+  const exitCode = await executeBinary(
+    fullPathToBinary,
+    binaryArgs,
+    binaryOptions,
+  );
+
+  if (exitCode !== 0) {
+    throw new Error(`${config.programName} idl generation failed`);
+  }
+
+  const idl = readIdl(config);
+  idl.metadata = {
+    ...idl.metadata,
+    origin: config.generator,
+    binaryVersion: binVersion,
+    libVersion,
+  };
+
+  return idl;
 }

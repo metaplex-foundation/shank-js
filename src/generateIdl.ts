@@ -1,14 +1,13 @@
 import type { Idl } from '@lorisleiva/kinobi';
 import { existsSync, rmSync, writeFileSync } from 'fs';
-import path from 'path';
 import generateUsingAnchor from './generators/anchor';
 import generateUsingShank from './generators/shank';
-import { logError, logInfo } from './utils';
+import { getIdlPath, logError, logInfo } from './utils';
 import { GeneratorOptions } from './types';
 
-export function generateIdl(config: GeneratorOptions): void {
+export async function generateIdl(config: GeneratorOptions): Promise<void> {
   removeCurrentIdl(config);
-  const idl = handleGenerator(config);
+  const idl = await handleGenerator(config);
   const enhancedIdl = enhanceIdl(config, idl);
   writeIdl(config, enhancedIdl);
 }
@@ -26,7 +25,7 @@ function removeCurrentIdl(config: GeneratorOptions): void {
   }
 }
 
-function handleGenerator(config: GeneratorOptions): Idl {
+async function handleGenerator(config: GeneratorOptions): Promise<Idl> {
   if (config.generator === 'anchor') {
     return generateUsingAnchor(config);
   }
@@ -46,9 +45,4 @@ function enhanceIdl(config: GeneratorOptions, idl: Idl): Idl {
 function writeIdl(config: GeneratorOptions, idl: Idl): void {
   const idlPath = getIdlPath(config);
   writeFileSync(idlPath, JSON.stringify(idl, null, 2));
-}
-
-function getIdlPath(config: GeneratorOptions): string {
-  const { idlDir, programName } = config;
-  return path.join(idlDir, `${programName}.json`);
 }
