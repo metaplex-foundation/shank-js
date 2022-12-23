@@ -1,13 +1,11 @@
 import path from 'path'
-import { UnreachableCaseError } from '../utils'
+import { strict as assert } from 'assert'
+import { promises as fs } from 'fs'
 import {
   isSolitaConfigAnchor,
   isSolitaConfigShank,
   SolitaConfig,
 } from './types'
-import { strict as assert } from 'assert'
-
-import { promises as fs } from 'fs'
 
 export async function enhanceIdl(
   config: SolitaConfig,
@@ -34,10 +32,8 @@ export async function enhanceIdl(
       libVersion,
     }
   } else {
-    throw new UnreachableCaseError(
-      // @ts-ignore this possible is when types were violated via JS
-      `Unknown IDL generator ${config.idlGenerator}`
-    )
+    // @ts-ignore
+    throw new Error(`Unknown IDL generator ${config.idlGenerator}`);
   }
 
   // Apply Idl hook if provided

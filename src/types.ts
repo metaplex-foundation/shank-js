@@ -1,5 +1,6 @@
 import { RustbinConfig } from '@metaplex-foundation/rustbin'
-import { Idl, Serializers, TypeAliases } from '../types'
+import { Idl } from '../types'
+
 export { RustbinConfig }
 
 export type SolitaConfigBase = {
@@ -10,15 +11,12 @@ export type SolitaConfigBase = {
   programDir: string
   idlHook?: (idl: Idl) => Idl
   rustbin?: RustbinConfig
-  typeAliases?: TypeAliases
-  serializers?: Serializers
   removeExistingIdl?: boolean
 }
 
 export type SolitaConfigAnchor = SolitaConfigBase & {
   idlGenerator: 'anchor'
   programId: string
-  anchorRemainingAccounts?: boolean
 }
 
 export type SolitaConfigShank = SolitaConfigBase & {
@@ -29,9 +27,6 @@ export type SolitaConfig = SolitaConfigAnchor | SolitaConfigShank
 
 export type SolitaHandlerResult = { exitCode: number; errorMsg?: string }
 
-// -----------------
-// Guards
-// -----------------
 export function isSolitaConfigAnchor(
   config: SolitaConfig
 ): config is SolitaConfigAnchor {

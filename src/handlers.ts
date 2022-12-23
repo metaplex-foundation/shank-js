@@ -6,7 +6,6 @@ import {
 } from '@metaplex-foundation/rustbin'
 import { spawn, SpawnOptionsWithoutStdio } from 'child_process'
 import path from 'path'
-import { Options as PrettierOptions } from 'prettier'
 import { red } from 'ansi-colors'
 import {
   SolitaConfig,
@@ -15,15 +14,12 @@ import {
   SolitaHandlerResult,
 } from './types'
 import { enhanceIdl } from './enhance-idl'
-import { generateTypeScriptSDK } from './gen-typescript'
 import { logDebug, logError, logInfo } from '../utils'
-
 
 const handlerErrorRx = /^Error\:/
 
 export function handleAnchor(
   config: SolitaConfigAnchor,
-  prettierConfig?: PrettierOptions
 ) {
   const { idlDir, binaryInstallDir, programDir } = config
   const spawnArgs = ['build', '--idl', idlDir]
@@ -45,14 +41,11 @@ export function handleAnchor(
     rustbinConfig,
     spawnArgs,
     spawnOpts,
-    prettierConfig,
-    config.anchorRemainingAccounts
   )
 }
 
 export function handleShank(
   config: SolitaConfigShank,
-  prettierConfig?: PrettierOptions
 ) {
   const { idlDir, binaryInstallDir, programDir } = config
   const spawnArgs = ['idl', '--out-dir', idlDir, '--crate-root', programDir]
@@ -74,8 +67,6 @@ export function handleShank(
     rustbinConfig,
     spawnArgs,
     spawnOpts,
-    prettierConfig,
-    false
   )
 }
 
@@ -84,8 +75,6 @@ async function handle(
   rustbinConfig: RustbinConfig,
   spawnArgs: string[],
   spawnOpts: SpawnOptionsWithoutStdio,
-  prettierConfig?: PrettierOptions,
-  anchorRemainingAccounts?: boolean
 ) {
   const { programName, idlDir, sdkDir } = config
 
@@ -116,14 +105,6 @@ async function handle(
             path.join(idlDir, `${programName}.json`)
           )
           const idl = await enhanceIdl(config, binVersion, libVersion)
-          await generateTypeScriptSDK(
-            idl,
-            sdkDir,
-            prettierConfig,
-            config.typeAliases,
-            config.serializers,
-            anchorRemainingAccounts
-          )
           resolve({ exitCode })
         } else {
           const errorMsg = red(
