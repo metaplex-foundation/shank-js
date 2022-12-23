@@ -1,9 +1,9 @@
 import { RustbinConfig } from '@metaplex-foundation/rustbin'
-import { Idl } from '../types'
+import type { Idl } from '@lorisleiva/kinobi'
 
 export { RustbinConfig }
 
-export type SolitaConfigBase = {
+export type BaseGeneratorOptions = {
   programName: string
   idlDir: string
   sdkDir: string
@@ -14,33 +14,25 @@ export type SolitaConfigBase = {
   removeExistingIdl?: boolean
 }
 
-export type SolitaConfigAnchor = SolitaConfigBase & {
-  idlGenerator: 'anchor'
-  programId: string
-}
+export type AnchorGeneratorOptions = BaseGeneratorOptions & {
+  generator: 'anchor';
+  programId: string;
+};
 
-export type SolitaConfigShank = SolitaConfigBase & {
-  idlGenerator: 'shank'
-}
+export type ShankGeneratorOptions = BaseGeneratorOptions & {
+  generator: 'shank';
+};
 
-export type SolitaConfig = SolitaConfigAnchor | SolitaConfigShank
-
-export type SolitaHandlerResult = { exitCode: number; errorMsg?: string }
+export type GeneratorOptions = AnchorGeneratorOptions | ShankGeneratorOptions;
 
 export function isSolitaConfigAnchor(
-  config: SolitaConfig
-): config is SolitaConfigAnchor {
-  return config.idlGenerator === 'anchor'
+  config: GeneratorOptions,
+): config is AnchorGeneratorOptions {
+  return config.generator === 'anchor';
 }
 
 export function isSolitaConfigShank(
-  config: SolitaConfig
-): config is SolitaConfigShank {
-  return config.idlGenerator === 'shank'
-}
-
-export function isErrorResult(
-  result: SolitaHandlerResult
-): result is SolitaHandlerResult & { errorMsg: string } {
-  return result.errorMsg != null
+  config: GeneratorOptions,
+): config is ShankGeneratorOptions {
+  return config.generator === 'shank';
 }
