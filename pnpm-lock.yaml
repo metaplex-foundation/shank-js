@@ -1,13 +1,15 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lorisleiva/kinobi': ^0.0.1
+  '@lorisleiva/kinobi': ^0.0.2
   '@metaplex-foundation/rustbin': ^0.3.1
+  '@types/debug': ^4.1.7
   '@types/node': ^18.11.17
   '@types/prettier': ^2.7.1
   '@typescript-eslint/eslint-plugin': ^5.0.0
   '@typescript-eslint/parser': ^5.46.1
   ansi-colors: ^4.1.3
+  debug: ^4.3.4
   eslint: ^8.0.1
   eslint-config-airbnb-typescript: ^17.0.0
   eslint-config-prettier: ^8.5.0
@@ -20,9 +22,11 @@ specifiers:
 dependencies:
   '@metaplex-foundation/rustbin': 0.3.1
   ansi-colors: 4.1.3
+  debug: 4.3.4
 
 devDependencies:
-  '@lorisleiva/kinobi': 0.0.1
+  '@lorisleiva/kinobi': 0.0.2
+  '@types/debug': 4.1.7
   '@types/node': 18.11.17
   '@types/prettier': 2.7.1
   '@typescript-eslint/eslint-plugin': 5.46.1_imrg37k3svwu377c6q7gkarwmi
@@ -75,8 +79,8 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@lorisleiva/kinobi/0.0.1:
-    resolution: {integrity: sha512-M/q2wE5qSmaoS3Su8v8ZNT7barYSry68akgLkFdFE3qwoR1jcttRJMT+s0hK9tnaJ45dOm35Uxr9tLuZ5zSkRw==}
+  /@lorisleiva/kinobi/0.0.2:
+    resolution: {integrity: sha512-BqR/4kM+/7pCQ4HCxqE5qqVRVaiHp54ye9ppBAeFdEiIbuxtOyJ4mDzEHT05dXJ1bLostpiJCi6RLIbGplxZeg==}
     dependencies:
       nunjucks: 3.2.3
       prettier: 2.8.1
@@ -116,12 +120,22 @@ packages:
       fastq: 1.14.0
     dev: true
 
+  /@types/debug/4.1.7:
+    resolution: {integrity: sha512-9AonUzyTjXXhEOa0DnqpzZi6VHlqKMswga9EXjpXnnqxwLtdvPPtlO8evrI5D9S6asFRCQ6v+wpiUKbw+vKqyg==}
+    dependencies:
+      '@types/ms': 0.7.31
+    dev: true
+
   /@types/json-schema/7.0.11:
     resolution: {integrity: sha512-wOuvG1SN4Us4rez+tylwwwCV1psiNVOkJeM3AUWUNWg/jDQY2+HE/444y5gc+jBmRqASOm2Oeh5c1axHobwRKQ==}
     dev: true
 
   /@types/json5/0.0.29:
     resolution: {integrity: sha512-dRLjCWHYg4oaA77cxO64oO+7JwCwnIzkZPdrrC71jQmQtlhM556pwKo5bUzqvZndkVbeFLIIi+9TC40JNF5hNQ==}
+    dev: true
+
+  /@types/ms/0.7.31:
+    resolution: {integrity: sha512-iiUgKzV9AuaEkZqkOLDIvlQiL6ltuZd9tGcW3gwpnX8JbuiuhFlEGmmFXEXkN50Cvq7Os88IY2v0dkDqXYWVgA==}
     dev: true
 
   /@types/node/18.11.17:
