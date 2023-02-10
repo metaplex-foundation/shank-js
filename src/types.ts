@@ -1,5 +1,5 @@
 import { RustbinConfig } from '@metaplex-foundation/rustbin';
-import type { Idl } from '@lorisleiva/kinobi';
+import type { Idl } from '@metaplex-foundation/kinobi';
 
 export { RustbinConfig };
 

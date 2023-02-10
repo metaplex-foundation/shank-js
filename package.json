@@ -1,7 +1,7 @@
 {
-  "name": "@lorisleiva/shank-js",
-  "version": "0.0.1",
-  "description": "",
+  "name": "@metaplex-foundation/shank-js",
+  "version": "0.1.0",
+  "description": "Generate IDL files via Anchor or Shank",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
   "scripts": {
@@ -12,11 +12,16 @@
   "publishConfig": {
     "access": "public"
   },
-  "keywords": [],
-  "author": "",
+  "keywords": [
+    "solana",
+    "idl",
+    "shank",
+    "generator"
+  ],
+  "author": "Metaplex Maintainers <contact@metaplex.com>",
   "license": "MIT",
   "devDependencies": {
-    "@lorisleiva/kinobi": "^0.0.3",
+    "@metaplex-foundation/kinobi": "^0.1.0",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.17",
     "@types/prettier": "^2.7.1",
@@ -35,5 +40,6 @@
     "@metaplex-foundation/rustbin": "^0.3.1",
     "ansi-colors": "^4.1.3",
     "debug": "^4.3.4"
-  }
+  },
+  "packageManager": "pnpm@7.18.1"
 }

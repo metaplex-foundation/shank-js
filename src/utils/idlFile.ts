@@ -1,4 +1,4 @@
-import type { Idl } from '@lorisleiva/kinobi';
+import type { Idl } from '@metaplex-foundation/kinobi';
 import { readFileSync } from 'fs';
 import path from 'path';
 import { GeneratorOptions } from '../types';

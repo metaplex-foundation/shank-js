@@ -1,4 +1,4 @@
-import type { Idl } from '@lorisleiva/kinobi';
+import type { Idl } from '@metaplex-foundation/kinobi';
 import path from 'path';
 import { checkAndInstallRustBinary, executeBinary, readIdl } from '../utils';
 import { AnchorGeneratorOptions, RustbinConfig } from '../types';

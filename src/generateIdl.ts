@@ -1,4 +1,4 @@
-import type { Idl } from '@lorisleiva/kinobi';
+import type { Idl } from '@metaplex-foundation/kinobi';
 import { existsSync, rmSync, writeFileSync } from 'fs';
 import generateUsingAnchor from './generators/anchor';
 import generateUsingShank from './generators/shank';

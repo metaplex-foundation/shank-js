@@ -1,7 +1,7 @@
 lockfileVersion: 5.4
 
 specifiers:
-  '@lorisleiva/kinobi': ^0.0.3
+  '@metaplex-foundation/kinobi': ^0.1.0
   '@metaplex-foundation/rustbin': ^0.3.1
   '@types/debug': ^4.1.7
   '@types/node': ^18.11.17
@@ -25,7 +25,7 @@ dependencies:
   debug: 4.3.4
 
 devDependencies:
-  '@lorisleiva/kinobi': 0.0.3
+  '@metaplex-foundation/kinobi': 0.1.0
   '@types/debug': 4.1.7
   '@types/node': 18.11.17
   '@types/prettier': 2.7.1
@@ -79,9 +79,11 @@ packages:
     resolution: {integrity: sha512-ZnQMnLV4e7hDlUvw8H+U8ASL02SS2Gn6+9Ac3wGGLIe7+je2AeAOxPY+izIPJDfFDb7eDjev0Us8MO1iFRN8hA==}
     dev: true
 
-  /@lorisleiva/kinobi/0.0.3:
-    resolution: {integrity: sha512-bD9TWyhy+x64QNmwCKaWhU1IGbmXbJDBpM7ceZ1JuanVpCe5F/faaifhV1c52oLDhN9q1/vDR05ljleqJfGUiQ==}
+  /@metaplex-foundation/kinobi/0.1.0:
+    resolution: {integrity: sha512-2Jykz+Jcv10xW1rZQPdL7Hwg/Xp99JrtEVSlRLnD/Ij2n8DypsQq6ztONtxyhu0afyDduwvdErKrvCTC+BBQ4w==}
     dependencies:
+      '@noble/hashes': 1.2.0
+      chalk: 4.1.2
       nunjucks: 3.2.3
       prettier: 2.8.1
     transitivePeerDependencies:
@@ -98,6 +100,10 @@ packages:
     transitivePeerDependencies:
       - supports-color
     dev: false
+
+  /@noble/hashes/1.2.0:
+    resolution: {integrity: sha512-FZfhjEDbT5GRswV3C6uvLPHMiVD6lQBmpoX5+eSiPaMTXte/IKqI5dykDxzZB/WBeK/CDuQRBWarPdi3FNY2zQ==}
+    dev: true
 
   /@nodelib/fs.scandir/2.1.5:
     resolution: {integrity: sha512-vq24Bq3ym5HEQm2NKCr3yXDwjc7vTsEThRDnkp2DK9p1uqLR+DHurm/NOTo0KG7HYHU7eppKZj3MyqYuMBf62g==}
