@@ -20,6 +20,9 @@
   ],
   "author": "Metaplex Maintainers <contact@metaplex.com>",
   "license": "MIT",
+  "repository": {
+    "url": "https://github.com/metaplex-foundation/shank-js.git"
+  },
   "devDependencies": {
     "@metaplex-foundation/kinobi": "^0.1.0",
     "@types/debug": "^4.1.7",
