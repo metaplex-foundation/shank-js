@@ -32,9 +32,9 @@ generateIdl({
 
 // From an Anchor program.
 generateIdl({  
-  generator: 'anchor',
-  programName: 'candy_machine_core',
-  programId: 'CndyV3LdqHUfDLmE5naZjVN8rBZz4tqhdefbAnjHG3JR',
+  generator: "anchor",
+  programName: "candy_machine_core",
+  programId: "CndyV3LdqHUfDLmE5naZjVN8rBZz4tqhdefbAnjHG3JR",
   idlDir,
   binaryInstallDir,
   programDir: path.join(programDir, "candy-machine-core"),
