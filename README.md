@@ -32,7 +32,7 @@ generateIdl({
 
 // From an Anchor program.
 generateIdl({  
-  idlGenerator: 'anchor',
+  generator: 'anchor',
   programName: 'candy_machine_core',
   programId: 'CndyV3LdqHUfDLmE5naZjVN8rBZz4tqhdefbAnjHG3JR',
   idlDir,
