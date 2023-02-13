@@ -37,7 +37,7 @@ generateIdl({
   programId: 'CndyV3LdqHUfDLmE5naZjVN8rBZz4tqhdefbAnjHG3JR',
   idlDir,
   binaryInstallDir,
-  programDir,
+  programDir: path.join(programDir, "candy-machine-core"),
 });
 ```
 
