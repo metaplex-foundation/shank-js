@@ -7,6 +7,7 @@ export type BaseGeneratorOptions = {
   programName: string;
   idlDir: string;
   binaryInstallDir: string;
+  binaryExtraArgs?: string[];
   programDir: string;
   idlHook?: (idl: Idl) => Idl;
   rustbin?: RustbinConfig;

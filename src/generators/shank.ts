@@ -6,8 +6,15 @@ import { RustbinConfig, ShankGeneratorOptions } from '../types';
 export default async function generate(
   config: ShankGeneratorOptions,
 ): Promise<Idl> {
-  const { idlDir, binaryInstallDir, programDir } = config;
-  const binaryArgs = ['idl', '--out-dir', idlDir, '--crate-root', programDir];
+  const { idlDir, binaryInstallDir, programDir, binaryExtraArgs } = config;
+  const binaryArgs = [
+    'idl',
+    '--out-dir',
+    idlDir,
+    '--crate-root',
+    programDir,
+    ...(binaryExtraArgs ?? []),
+  ];
   const binaryOptions = { cwd: programDir };
   const rustbinConfig: RustbinConfig = {
     rootDir: binaryInstallDir,

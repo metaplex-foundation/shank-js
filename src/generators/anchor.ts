@@ -6,8 +6,8 @@ import { AnchorGeneratorOptions, RustbinConfig } from '../types';
 export default async function generate(
   config: AnchorGeneratorOptions,
 ): Promise<Idl> {
-  const { idlDir, binaryInstallDir, programDir } = config;
-  const binaryArgs = ['build', '--idl', idlDir];
+  const { idlDir, binaryInstallDir, programDir, binaryExtraArgs } = config;
+  const binaryArgs = ['build', '--idl', idlDir, ...(binaryExtraArgs ?? [])];
   const binaryOptions = { cwd: programDir };
   const rustbinConfig: RustbinConfig = {
     rootDir: binaryInstallDir,
