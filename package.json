@@ -1,6 +1,6 @@
 {
   "name": "@metaplex-foundation/shank-js",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Generate IDL files via Anchor or Shank",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
