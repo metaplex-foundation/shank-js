@@ -2,8 +2,8 @@ lockfileVersion: '6.0'
 
 dependencies:
   '@metaplex-foundation/rustbin':
-    specifier: ^0.3.2
-    version: 0.3.2
+    specifier: ^0.3.3
+    version: 0.3.3
   ansi-colors:
     specifier: ^4.1.3
     version: 4.1.3
@@ -105,8 +105,8 @@ packages:
       - chokidar
     dev: true
 
-  /@metaplex-foundation/rustbin@0.3.2:
-    resolution: {integrity: sha512-IgL6KUfTKWXvDQYtXKVWi6Pld5A79h4vP6dDOg/M2Dgg9SJjek+aUO6RbnanHanx9iBssh/Apu0hnA0YNyrwEA==}
+  /@metaplex-foundation/rustbin@0.3.3:
+    resolution: {integrity: sha512-WNyfYlKEyHPgtIAw6O/XvSUcOk28XVOvE17SZRYqQzrgM43dTlNT1WdWb9KyzPlDL9rWQNc1HVuIzPKNLW6Vsg==}
     dependencies:
       debug: 4.3.4
       semver: 7.3.8
