@@ -1,14 +1,15 @@
 import type { Idl } from '@metaplex-foundation/kinobi';
-import { readFileSync } from 'fs';
+import { readFileSync, rmSync } from 'fs';
 import path from 'path';
 import { GeneratorOptions } from '../types';
 
 export function getIdlPath(config: GeneratorOptions): string {
-  const { idlDir, programName } = config;
-  return path.join(idlDir, `${programName}.json`);
+  const { idlDir, programName, idlName } = config;
+  return path.join(idlDir, `${idlName ?? programName}.json`);
 }
 
-export function readIdl(config: GeneratorOptions): Idl {
-  const idlPath = getIdlPath(config);
-  return JSON.parse(readFileSync(idlPath, 'utf-8')) as Idl;
+export function consumeIdl(idlPath: string): Idl {
+  const idl = JSON.parse(readFileSync(idlPath, 'utf-8')) as Idl;
+  rmSync(idlPath);
+  return idl;
 }
