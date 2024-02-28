@@ -6,14 +6,21 @@ import { checkAndInstallRustBinary, consumeIdl, executeBinary } from '../utils';
 export default async function generate(
   config: ShankGeneratorOptions,
 ): Promise<Idl> {
-  const { idlDir, binaryInstallDir, programDir, programName, binaryExtraArgs } =
-    config;
+  const {
+    idlDir,
+    idlName,
+    binaryInstallDir,
+    programDir,
+    programName,
+    binaryExtraArgs,
+  } = config;
   const binaryArgs = [
     'idl',
     '--out-dir',
     idlDir,
     '--crate-root',
     programDir,
+    ...(idlName ? ['--out-filename', `${idlName}.json`] : []),
     ...(binaryExtraArgs ?? []),
   ];
   const binaryOptions = { cwd: programDir };
@@ -39,7 +46,7 @@ export default async function generate(
     throw new Error(`${programName} idl generation failed`);
   }
 
-  const idl = consumeIdl(path.join(idlDir, `${programName}.json`));
+  const idl = consumeIdl(path.join(idlDir, `${idlName ?? programName}.json`));
   idl.metadata = {
     ...idl.metadata,
     origin: config.generator,

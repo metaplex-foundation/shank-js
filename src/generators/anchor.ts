@@ -6,9 +6,21 @@ import { checkAndInstallRustBinary, consumeIdl, executeBinary } from '../utils';
 export default async function generate(
   config: AnchorGeneratorOptions,
 ): Promise<Idl> {
-  const { idlDir, binaryInstallDir, programDir, programName, binaryExtraArgs } =
-    config;
-  const binaryArgs = ['build', '--idl', idlDir, ...(binaryExtraArgs ?? [])];
+  const {
+    idlDir,
+    idlName,
+    binaryInstallDir,
+    programDir,
+    programName,
+    binaryExtraArgs,
+  } = config;
+  const binaryArgs = [
+    'idl',
+    'build',
+    '--out',
+    idlName ? `${idlDir}/${idlName}.json` : idlDir,
+    ...(binaryExtraArgs ?? []),
+  ];
   const binaryOptions = { cwd: programDir };
   const rustbinConfig: RustbinConfig = {
     rootDir: binaryInstallDir,
@@ -32,7 +44,7 @@ export default async function generate(
     throw new Error(`${programName} idl generation failed`);
   }
 
-  const idl = consumeIdl(path.join(idlDir, `${programName}.json`));
+  const idl = consumeIdl(path.join(idlDir, `${idlName ?? programName}.json`));
   idl.metadata = {
     ...idl.metadata,
     address: config.programId,
