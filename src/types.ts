@@ -5,6 +5,7 @@ export { RustbinConfig };
 
 export type BaseGeneratorOptions = {
   programName: string;
+  idlName?: string;
   idlDir: string;
   binaryInstallDir: string;
   binaryExtraArgs?: string[];

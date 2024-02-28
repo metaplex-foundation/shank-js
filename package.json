@@ -24,12 +24,12 @@
     "url": "https://github.com/metaplex-foundation/shank-js.git"
   },
   "devDependencies": {
-    "@metaplex-foundation/kinobi": "^0.1.0",
+    "@metaplex-foundation/kinobi": "^0.17.4",
     "@types/debug": "^4.1.7",
     "@types/node": "^18.11.17",
     "@types/prettier": "^2.7.1",
-    "@typescript-eslint/eslint-plugin": "^5.0.0",
-    "@typescript-eslint/parser": "^5.46.1",
+    "@typescript-eslint/eslint-plugin": "^7.1.0",
+    "@typescript-eslint/parser": "^7.1.0",
     "eslint": "^8.0.1",
     "eslint-config-airbnb-typescript": "^17.0.0",
     "eslint-config-prettier": "^8.5.0",
@@ -37,7 +37,7 @@
     "eslint-plugin-prettier": "^4.2.1",
     "prettier": "^2.8.1",
     "rimraf": "^3.0.2",
-    "typescript": "^4.9.4"
+    "typescript": "^5.3.3"
   },
   "dependencies": {
     "@metaplex-foundation/rustbin": "^0.3.5",

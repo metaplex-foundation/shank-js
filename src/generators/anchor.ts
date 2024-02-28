@@ -1,12 +1,13 @@
 import type { Idl } from '@metaplex-foundation/kinobi';
 import path from 'path';
-import { checkAndInstallRustBinary, executeBinary, readIdl } from '../utils';
 import { AnchorGeneratorOptions, RustbinConfig } from '../types';
+import { checkAndInstallRustBinary, consumeIdl, executeBinary } from '../utils';
 
 export default async function generate(
   config: AnchorGeneratorOptions,
 ): Promise<Idl> {
-  const { idlDir, binaryInstallDir, programDir, binaryExtraArgs } = config;
+  const { idlDir, binaryInstallDir, programDir, programName, binaryExtraArgs } =
+    config;
   const binaryArgs = ['build', '--idl', idlDir, ...(binaryExtraArgs ?? [])];
   const binaryOptions = { cwd: programDir };
   const rustbinConfig: RustbinConfig = {
@@ -28,10 +29,10 @@ export default async function generate(
   );
 
   if (exitCode !== 0) {
-    throw new Error(`${config.programName} idl generation failed`);
+    throw new Error(`${programName} idl generation failed`);
   }
 
-  const idl = readIdl(config);
+  const idl = consumeIdl(path.join(idlDir, `${programName}.json`));
   idl.metadata = {
     ...idl.metadata,
     address: config.programId,

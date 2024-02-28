@@ -2,8 +2,8 @@ import type { Idl } from '@metaplex-foundation/kinobi';
 import { existsSync, rmSync, writeFileSync } from 'fs';
 import generateUsingAnchor from './generators/anchor';
 import generateUsingShank from './generators/shank';
-import { getIdlPath, logError, logInfo } from './utils';
 import { GeneratorOptions } from './types';
+import { getIdlPath, logInfo, logWarn } from './utils';
 
 export async function generateIdl(config: GeneratorOptions): Promise<void> {
   removeCurrentIdl(config);
@@ -21,7 +21,7 @@ function removeCurrentIdl(config: GeneratorOptions): void {
     rmSync(idlPath);
     logInfo(`Removed existing IDL at ${idlPath}.`);
   } catch (error) {
-    logError(`Failed to remove existing IDL at ${idlPath}.`);
+    logWarn(`Failed to remove existing IDL at ${idlPath}.`);
   }
 }
 
