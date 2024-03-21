@@ -12,6 +12,7 @@ export default async function generate(
     binaryInstallDir,
     programDir,
     programName,
+    programId,
     binaryExtraArgs,
   } = config;
   const binaryArgs = [
@@ -20,6 +21,7 @@ export default async function generate(
     idlDir,
     '--crate-root',
     programDir,
+    ...(programId ? ['--program-id', `${programId}`] : []),
     ...(idlName ? ['--out-filename', `${idlName}.json`] : []),
     ...(binaryExtraArgs ?? []),
   ];
