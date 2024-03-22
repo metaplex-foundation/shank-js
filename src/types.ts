@@ -22,6 +22,7 @@ export type AnchorGeneratorOptions = BaseGeneratorOptions & {
 
 export type ShankGeneratorOptions = BaseGeneratorOptions & {
   generator: 'shank';
+  programId?: string;
 };
 
 export type GeneratorOptions = AnchorGeneratorOptions | ShankGeneratorOptions;
