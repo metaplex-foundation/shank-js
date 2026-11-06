@@ -114,27 +114,30 @@ export function cargoBuildBinary(
       cwd: cliDir,
       stdio: ['ignore', 'pipe', 'inherit'],
     });
+    const handleLine = (line: string) => {
+      try {
+        const msg = JSON.parse(line);
+        if (
+          msg.reason === 'compiler-artifact' &&
+          msg.executable &&
+          msg.target?.name === binName
+        ) {
+          executable = msg.executable;
+        }
+      } catch {
+        // Not a JSON message.
+      }
+    };
     child.stdout.on('data', (chunk) => {
       buffer += chunk.toString();
       const lines = buffer.split('\n');
       buffer = lines.pop() ?? '';
-      lines.forEach((line) => {
-        try {
-          const msg = JSON.parse(line);
-          if (
-            msg.reason === 'compiler-artifact' &&
-            msg.executable &&
-            msg.target?.name === binName
-          ) {
-            executable = msg.executable;
-          }
-        } catch {
-          // Not a JSON message.
-        }
-      });
+      lines.forEach(handleLine);
     });
     child.on('error', reject);
-    child.on('exit', (code) => {
+    // `close` fires after stdout is fully consumed, unlike `exit`.
+    child.on('close', (code) => {
+      if (buffer) handleLine(buffer);
       if (code !== 0) {
         reject(new Error(`Failed to build local ${binName} in ${cliDir}`));
       } else if (!executable) {
