@@ -14,6 +14,9 @@ dependencies:
   debug:
     specifier: ^4.3.4
     version: 4.3.4
+  toml:
+    specifier: ^3.0.0
+    version: 3.0.0
 
 devDependencies:
   '@metaplex-foundation/kinobi':

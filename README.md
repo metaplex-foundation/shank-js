@@ -47,6 +47,27 @@ Generate all IDL configured in the file.
 node ./shank.js
 ```
 
+## Testing a local shank
+
+To try out local changes to [shank](https://github.com/metaplex-foundation/shank) on a program, point the program at your checkout instead of crates.io, either directly or with a patch:
+
+```toml
+[dependencies]
+shank = { path = "../shank/shank" }
+
+# or, keeping the regular dependency
+[patch.crates-io]
+shank = { path = "../shank/shank" }
+```
+
+When `shank` is a path dependency (directly, via `[workspace.dependencies]` or via `[patch]`), shank-js builds the `shank-cli` crate next to it with `cargo build` and uses that binary, so changes to both the macros and the CLI are picked up on every run. Nothing is installed to `binaryInstallDir`.
+
+You can also use any prebuilt binary, without touching the program's `Cargo.toml`, via the `SHANK_BINARY` (or `ANCHOR_BINARY`) environment variable or the `binaryPath` option:
+
+```
+SHANK_BINARY=../shank/target/debug/shank node ./shank.js
+```
+
 ## See also
 - https://github.com/metaplex-foundation/shank
 - https://github.com/metaplex-foundation/rustbin
