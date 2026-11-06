@@ -1,7 +1,12 @@
 import type { Idl } from '@metaplex-foundation/kinobi';
 import path from 'path';
 import { AnchorGeneratorOptions, RustbinConfig } from '../types';
-import { checkAndInstallRustBinary, consumeIdl, executeBinary } from '../utils';
+import {
+  checkAndInstallRustBinary,
+  consumeIdl,
+  executeBinary,
+  resolveLocalBinary,
+} from '../utils';
 
 export default async function generate(
   config: AnchorGeneratorOptions,
@@ -20,8 +25,13 @@ export default async function generate(
     ...config.rustbin,
   };
 
+  const local = await resolveLocalBinary({
+    binaryPath: config.binaryPath,
+    envVar: 'ANCHOR_BINARY',
+    binaryName: 'anchor',
+  });
   const { fullPathToBinary, binVersion, libVersion } =
-    await checkAndInstallRustBinary(rustbinConfig);
+    local ?? (await checkAndInstallRustBinary(rustbinConfig));
   const exitCode = await executeBinary(
     fullPathToBinary,
     binaryArgs,

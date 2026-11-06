@@ -9,6 +9,12 @@ export type BaseGeneratorOptions = {
   idlDir: string;
   binaryInstallDir: string;
   binaryExtraArgs?: string[];
+  /**
+   * Path to a binary to use instead of installing one with rustbin, e.g. a
+   * locally built shank. Can also be set via the `SHANK_BINARY` or
+   * `ANCHOR_BINARY` environment variables.
+   */
+  binaryPath?: string;
   programDir: string;
   idlHook?: (idl: Idl) => Idl;
   rustbin?: RustbinConfig;

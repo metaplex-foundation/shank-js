@@ -1,7 +1,12 @@
 import type { Idl } from '@metaplex-foundation/kinobi';
 import path from 'path';
 import { RustbinConfig, ShankGeneratorOptions } from '../types';
-import { checkAndInstallRustBinary, consumeIdl, executeBinary } from '../utils';
+import {
+  checkAndInstallRustBinary,
+  consumeIdl,
+  executeBinary,
+  resolveLocalBinary,
+} from '../utils';
 
 export default async function generate(
   config: ShankGeneratorOptions,
@@ -36,8 +41,20 @@ export default async function generate(
     ...config.rustbin,
   };
 
+  // A binary given explicitly, or a local shank checkout used as a path
+  // dependency, takes precedence over the crates.io version.
+  const local = await resolveLocalBinary({
+    binaryPath: config.binaryPath,
+    envVar: 'SHANK_BINARY',
+    binaryName: 'shank',
+    localBuild: {
+      programDir,
+      libName: 'shank',
+      cliDir: (libPath) => path.join(libPath, '..', 'shank-cli'),
+    },
+  });
   const { fullPathToBinary, binVersion, libVersion } =
-    await checkAndInstallRustBinary(rustbinConfig);
+    local ?? (await checkAndInstallRustBinary(rustbinConfig));
   const exitCode = await executeBinary(
     fullPathToBinary,
     binaryArgs,
