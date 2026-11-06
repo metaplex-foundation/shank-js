@@ -1,7 +1,7 @@
 import { spawn } from 'child_process';
 import { existsSync, readFileSync } from 'fs';
 import path from 'path';
-import toml from 'toml';
+import { parse as parseToml } from 'smol-toml';
 import { rustbinVersion } from '@metaplex-foundation/rustbin';
 import { logInfo, logWarn } from './logs';
 
@@ -10,7 +10,7 @@ type CargoToml = Record<string, any>;
 function readCargoToml(file: string): CargoToml | null {
   if (!existsSync(file)) return null;
   try {
-    return toml.parse(readFileSync(file, 'utf8'));
+    return parseToml(readFileSync(file, 'utf8'));
   } catch (err: any) {
     logWarn(`Failed to parse ${file}: ${err.message}`);
     return null;
